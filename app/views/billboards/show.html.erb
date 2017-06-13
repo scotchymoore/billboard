@@ -1,0 +1,18 @@
+<h1>Billboard: <%= @billboard.name %> </h1>
+
+<% if @billboard.songs.any? %>
+    <h5> Songs </h5>
+    <ul>
+        <% @billboard.songs.each do |bs| %>
+          <li>
+            <%= bs.song.title %> - <%= bs.artist.title %> -
+            <%= link_to 'Remove', songs_path(bs), method: :delete, data: {confirm: 'Really remove this ingredient?'} %>
+          </li>
+        <% end %>
+    </ul>
+<% else %>
+  <h5>No Songs Found</h5>
+<% end %>
+
+<%= link_to 'All Billboard', billboards_path %>
+<%= link_to 'Edit', edit_billboard_path(@billboard) %>

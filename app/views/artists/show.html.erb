@@ -1,0 +1,27 @@
+<h1><%@artist.name%></h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @artist.name %>
+</p>
+
+<p>
+  <strong>Song count:</strong>
+  <%= @artist.songs.count %>
+</p>
+
+<% if @artist.songs.any? %>
+  <h5> Songs </h5>
+  <ul>
+    <% @artist.songs.each do |as| %>
+    <li>
+      <%= as.title %>
+      <%= link_to 'Remove', artist_song_path(as), method: :delete %>
+    </li>
+  </ul>
+  <% end %>
+<% end %>
+
+<%= link_to 'All Songs', artist_songs_path(@artist) %> |
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>
